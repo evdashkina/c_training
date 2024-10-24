@@ -44,7 +44,7 @@ namespace WebAddressbookTests
         {
             OpenHomePageContact();
             LoginContact(new AccountData("admin", "secret"));
-            GroupDataContact group1 = new GroupDataContact("Lisa", "Mur");
+            DataContact group1 = new DataContact("Lisa", "Mur");
             FillFormContact(group1);
             Exit();
         }
@@ -55,7 +55,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("Logout")).Click();
         }
 
-        private void FillFormContact(GroupDataContact groupcontact)
+        private void FillFormContact(DataContact groupcontact)
         {
             driver.FindElement(By.LinkText("add new")).Click();
             driver.FindElement(By.Name("firstname")).Click();

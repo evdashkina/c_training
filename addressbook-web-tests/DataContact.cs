@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    internal class GroupDataContact
+    internal class DataContact
     {
         private string firstname;
         private string middlename;
@@ -27,7 +27,7 @@ namespace WebAddressbookTests
         private string anniversary = "";
         private string group1 = "";
 
-        public GroupDataContact(string firstname, string middlename)
+        public DataContact(string firstname, string middlename)
         {
             this.firstname = firstname;
             this.middlename = middlename;
