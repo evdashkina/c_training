@@ -24,6 +24,27 @@ namespace addressbook_web_tests
                 radius = value;
             }
         }
-        
+
+    }
+
+    internal class CopyOfCircle : Figure
+    {
+        private int radius;
+        public CopyOfCircle(int radius)
+        {
+            this.radius = radius;
+        }
+        public int Radius
+        {
+            get
+            {
+                return radius;
+            }
+            set
+            {
+                radius = value;
+            }
+        }
+
     }
 }
