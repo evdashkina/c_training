@@ -15,11 +15,11 @@ namespace WebAddressbookTests
         [Test]
         public void CreateContactTest1()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
+            navigator.GoToHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
             DataContact group1 = new DataContact("Lisa", "Mur");
-            FillFormContact(group1);
-            Exit();
+            groupHelper.FillFormContact(group1);
+            groupHelper.Logout();
         }
     }
 }
