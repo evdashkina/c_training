@@ -18,5 +18,14 @@ namespace WebAddressbookTests
             app.Contacts.CreateContact(group1);
                 
         }
+
+        [Test]
+        public void CreateEmptyContactTest()
+        {
+
+            DataContact group1 = new DataContact("", "");
+            app.Contacts.CreateContact(group1);
+
+        }
     }
 }

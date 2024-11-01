@@ -27,5 +27,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
             driver.Navigate().GoToUrl("http://localhost/addressbook/addressbook/group.php");
         }
+
     }
 }
