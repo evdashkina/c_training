@@ -21,7 +21,9 @@ namespace WebAddressbookTests
 
         public ContactHelper CreateContact(DataContact group1) 
         {
+            NewAdd();
             FillFormContact(group1);
+            Enter();
             return this;
         }
 
@@ -46,21 +48,30 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper FillFormContact(DataContact groupcontact)
+        public ContactHelper NewAdd()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+
+        public ContactHelper Enter()
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
+            return this;
+        }
+
+        public ContactHelper FillFormContact(DataContact groupcontact)
+        {
+            
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(groupcontact.Firstname);
             driver.FindElement(By.Name("middlename")).Click();
             driver.FindElement(By.Name("middlename")).Clear();
             driver.FindElement(By.Name("middlename")).SendKeys(groupcontact.Middlename);
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
+           
             return this;
         }
-
-       
-
 
         public ContactHelper SelectContact(int index)
         {
