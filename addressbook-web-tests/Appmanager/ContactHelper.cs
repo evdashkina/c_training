@@ -31,17 +31,16 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             SelectContact(p);
+            ModifyContact();
             RemoveContact();
             ReturnHomePage();
             return this;
         }
 
-        public ContactHelper ContactModify(DataContact newData)
+        public ContactHelper ContactModify(int v, DataContact newData)
         {
             manager.Navigator.GoToHomePage();
-            //SelectContact();
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img")).Click();
-            InitContactModification();
+            InitContactModification(v);
             FillFormContact(newData);
             SubmitContactModification();
             ReturnHomePage();
@@ -75,14 +74,18 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
-            //driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]/a/img")).Click();
+            return this;
+        }
+        public ContactHelper ModifyContact() 
+        {
+            driver.FindElement(By.Name("modifiy")).Click();
             return this;
         }
 
         public ContactHelper RemoveContact() 
         {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
             return this;
         }
 
@@ -94,15 +97,13 @@ namespace WebAddressbookTests
 
         public ContactHelper SubmitContactModification()
         {
-            //driver.FindElement(By.Name("update")).Click();
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int v)
         {
-            driver.FindElement(By.XPath("//form[@action='edit.php']")).Click();
-            //driver.FindElement(By.Name("Edit")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr["+ v +"]/td[8]/a/img")).Click();
             return this;
         }
 

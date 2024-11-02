@@ -14,10 +14,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            DataContact newData = new DataContact("Tatana", "Eva");
-            //newData.Firstname = "Tatana";
-           // newData.Middlename = "Eva";
-            app.Contacts.ContactModify(newData);
+            DataContact newData = new DataContact("Olga", "Eva");
+            app.Contacts.ContactModify(2, newData);
         }
 
     }
