@@ -61,14 +61,8 @@ namespace WebAddressbookTests
 
         public ContactHelper FillFormContact(DataContact groupcontact)
         {
-            
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(groupcontact.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(groupcontact.Middlename);
-           
+            Type(By.Name("firstname"), groupcontact.Firstname);
+            Type(By.Name("middlename"), groupcontact.Middlename);
             return this;
         }
 
