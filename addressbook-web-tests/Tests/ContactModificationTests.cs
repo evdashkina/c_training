@@ -14,7 +14,13 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            DataContact newData = new DataContact("Olga", "Eva");
+
+            if (app.Contacts.ContactAvailab() == false)
+            {
+                DataContact newContact = new DataContact("Lisa", "Mur");
+                app.Contacts.CreateContact(newContact);
+            }
+            DataContact newData = new DataContact("Elena", "Push");
             app.Contacts.ContactModify(newData);
         }
 

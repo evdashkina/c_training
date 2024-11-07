@@ -13,8 +13,12 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest() 
         {
-            DataContact newData = new DataContact("Lisa", "Mur");
-            app.Contacts.Removal(newData);
+            if (app.Contacts.ContactAvailab() == false) 
+            {
+                DataContact newData = new DataContact("Lisa", "Mur");
+                app.Contacts.CreateContact(newData);
+            }
+            app.Contacts.Removal();
         }
     }
 }

@@ -27,10 +27,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Removal(DataContact newData)
+        public ContactHelper Removal()
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(newData);
+            SelectContact();
             ModifyContact();
             RemoveContact();
             ReturnHomePage();
@@ -40,7 +40,7 @@ namespace WebAddressbookTests
         public ContactHelper ContactModify(DataContact newData)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(newData);
+            InitContactModification();
             FillFormContact(newData);
             SubmitContactModification();
             ReturnHomePage();
@@ -66,20 +66,16 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(DataContact newData)
+        public ContactHelper SelectContact()
         {
-            if (IsElementPresent(By.Name("entry")))
-            {
-                driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
-            }
-            else 
-            {
-                CreateContact(newData);
-                ReturnHomePage();
-                driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
-            }
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
             return this;
         }
+        public bool ContactAvailab()
+        {
+            return IsElementPresent(By.Name("entry"));
+        }
+
         public ContactHelper ModifyContact() 
         {
             driver.FindElement(By.Name("modifiy")).Click();
@@ -104,19 +100,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification(DataContact newData)
+        public ContactHelper InitContactModification()
         {
-            if (IsElementPresent(By.Name("entry")))
-            {
-                driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            }
-            else
-            {
-                CreateContact(newData);
-                ReturnHomePage();
-                driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            }
-            
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();        
             return this;
         }
 
