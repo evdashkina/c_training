@@ -7,6 +7,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -62,7 +63,7 @@ namespace WebAddressbookTests
         public ContactHelper FillFormContact(DataContact groupcontact)
         {
             Type(By.Name("firstname"), groupcontact.Firstname);
-            Type(By.Name("middlename"), groupcontact.Middlename);
+            Type(By.Name("lastname"), groupcontact.Lastname);
             return this;
         }
 
@@ -104,6 +105,22 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();        
             return this;
+        }
+
+        public List<DataContact> GetContactList()
+        {
+            List<DataContact> contacts = new List<DataContact>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
+            foreach (IWebElement element in elements)
+            {
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                foreach (IWebElement cell in cells)
+                {
+                    contacts.Add(new DataContact(cell[2].Text, cell[1].Text));
+                }
+            }
+            return contacts;
         }
 
     }

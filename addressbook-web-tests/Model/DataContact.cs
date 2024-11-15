@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    public class DataContact
+    public class DataContact : IEquatable<DataContact>, IComparable<DataContact>
     {
         private string firstname;
-        private string middlename;
-        private string lastname = "";
+        private string middlename = "";
+        private string lastname;
         private string nickname = "";
         private string title = "";
         private string company = "";
@@ -27,11 +27,44 @@ namespace WebAddressbookTests
         private string anniversary = "";
         private string group1 = "";
 
-        public DataContact(string firstname, string middlename)
+        public DataContact(string firstname, string lastname)
         {
             this.firstname = firstname;
-            this.middlename = middlename;
+            this.lastname = lastname;
         }
+
+        public bool Equals(DataContact other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Firstname == other.Firstname && Lastname == other.Lastname;
+        }
+
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
+        public override string ToString()
+       {
+           return "firstname=" + Firstname + "lastname=" + Lastname;
+       }
+        public int CompareTo(DataContact other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return Firstname.CompareTo(other.Firstname);
+        }
+
         public string Firstname
         {
             get
