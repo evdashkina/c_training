@@ -111,15 +111,13 @@ namespace WebAddressbookTests
         {
             List<DataContact> contacts = new List<DataContact>();
             manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=entry]"));
+            //IList<IWebElement> cells = elements.FindElements(By.TagName("td"));
             foreach (IWebElement element in elements)
             {
                 IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                foreach (IWebElement cell in cells)
-                {
-                    contacts.Add(new DataContact(cell[2].Text, cell[1].Text));
-                }
-            }
+                contacts.Add(new DataContact(cells[2].Text, cells[1].Text));
+            }        
             return contacts;
         }
 

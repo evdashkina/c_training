@@ -32,7 +32,13 @@ namespace WebAddressbookTests
         {
 
             DataContact group1 = new DataContact("", "");
+            List<DataContact> oldGroups1 = app.Contacts.GetContactList();
             app.Contacts.CreateContact(group1);
+            List<DataContact> newGroups1 = app.Contacts.GetContactList();
+            oldGroups1.Add(group1);
+            oldGroups1.Sort();
+            newGroups1.Sort();
+            Assert.AreEqual(oldGroups1, newGroups1);
 
         }
     }

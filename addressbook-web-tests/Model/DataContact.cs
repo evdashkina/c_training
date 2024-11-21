@@ -49,20 +49,29 @@ namespace WebAddressbookTests
 
         public override int GetHashCode()
         {
-            return 0;
+            return 0; 
         }
 
         public override string ToString()
        {
-           return "firstname=" + Firstname + "lastname=" + Lastname;
+           return "firstname=" + Firstname + " lastname=" + Lastname;
        }
+
         public int CompareTo(DataContact other)
         {
             if (Object.ReferenceEquals(other, null))
             {
                 return 1;
             }
-            return Firstname.CompareTo(other.Firstname);
+            if (Firstname.CompareTo(other.Firstname) == 0)
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+            else
+            {
+                return Firstname.CompareTo(other.Firstname);
+            }
+
         }
 
         public string Firstname
