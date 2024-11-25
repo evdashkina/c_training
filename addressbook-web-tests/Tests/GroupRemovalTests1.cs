@@ -34,10 +34,16 @@ namespace WebAddressbookTests
                 app.Groups.Remove();
 
                 List<GroupData> newGroups = app.Groups.GetGroupList();
+                GroupData toBeRemoved = oldGroups[0];
                 oldGroups.RemoveAt(0);
-                oldGroups.Sort();
-                newGroups.Sort();
+                //oldGroups.Sort();
+                //newGroups.Sort();
                 Assert.AreEqual(oldGroups, newGroups);
+
+                foreach (GroupData group in newGroups)
+                {
+                    Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+                }
             }
         }
     }

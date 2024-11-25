@@ -74,29 +74,24 @@ namespace WebAddressbookTests
 
         }
 
+        public string IdContact 
+        { get; set; }
+
         public string Firstname
-        {
-            get
+        { 
+                get
             {
-                return firstname;
-            }
-            set
+                    return firstname;
+                }
+                set
             {
-                firstname = value;
-            }
+                    firstname = value;
+                }
+            
         }
 
         public string Middlename
-        {
-            get
-            {
-                return middlename;
-            }
-            set
-            {
-                middlename = value;
-            }
-        }
+        { get; set; }
 
         public string Lastname
         {
@@ -111,186 +106,50 @@ namespace WebAddressbookTests
         }
 
         public string Nickname
-        {
-            get
-            {
-                return nickname;
-            }
-            set
-            {
-                nickname = value;
-            }
-        }
+        { get; set; }
 
         public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                title = value;
-            }
-        }
+        { get; set; }
 
         public string Company
-        {
-            get
-            {
-                return company;
-            }
-            set
-            {
-                company = value;
-            }
-        }
+        { get; set; }
 
         public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set
-            {
-                address = value;
-            }
-        }
+        { get; set; }
 
         public string Telephonehome
-        {
-            get
-            {
-                return telephonehome;
-            }
-            set
-            {
-                telephonehome = value;
-            }
-        }
+        { get; set; }
 
         public string Telephonemobile
-        {
-            get
-            {
-                return telephonemobile;
-            }
-            set
-            {
-                telephonemobile = value;
-            }
-        }
+        { get; set; }
 
         public string Telephonework
-        {
-            get
-            {
-                return telephonework;
-            }
-            set
-            {
-                telephonework = value;
-            }
-        }
+        { get; set; }
 
         public string Telephonefax
-        {
-            get
-            {
-                return telephonefax;
-            }
-            set
-            {
-                telephonefax = value;
-            }
-        }
+        { get; set; }
 
 
         public string Email
-        {
-            get
-            {
-                return email;
-            }
-            set
-            {
-                email = value;
-            }
-        }
+        { get; set; }
 
         public string Email2
-        {
-            get
-            {
-                return email2;
-            }
-            set
-            {
-                email2 = value;
-            }
-        }
+        { get; set; }
 
         public string Email3
-        {
-            get
-            {
-                return email3;
-            }
-            set
-            {
-                email3 = value;
-            }
-        }
+        { get; set; }
 
         public string Homepage
-        {
-            get
-            {
-                return homepage;
-            }
-            set
-            {
-                homepage = value;
-            }
-        }
+        { get; set; }
 
         public string Birthday
-        {
-            get
-            {
-                return birthday;
-            }
-            set
-            {
-                birthday = value;
-            }
-        }
+        { get; set; }
 
         public string Anniversary
-        {
-            get
-            {
-                return anniversary;
-            }
-            set
-            {
-                anniversary = value;
-            }
-        }
-
+        { get; set; }
 
         public string Group1
-        {
-            get
-            {
-                return group1;
-            }
-            set
-            {
-                group1 = value;
-            }
-        }
+        { get; set; }
     }
 
 }
