@@ -132,5 +132,14 @@ namespace WebAddressbookTests
             return new List<DataContact>(contactCache);
         }
 
+        public DataContact GetContactInformationFromTable()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataContact GetContactInformationFromEditForm()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
