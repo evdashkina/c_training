@@ -168,9 +168,9 @@ namespace WebAddressbookTests
         {
             get
             {
-                if (AllPhones != null)
+                if (allphones != null)
                 {
-                    return AllPhones;
+                    return allphones;
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace WebAddressbookTests
             }
             set
             {
-                AllPhones = value;
+                allphones = value;
             }
         }
 
