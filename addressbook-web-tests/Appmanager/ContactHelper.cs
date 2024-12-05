@@ -107,7 +107,10 @@ namespace WebAddressbookTests
         public ContactHelper InitContactModification()
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            
+            //driver.FindElements(By.Name("entry"))[index]
+            //.FindElements(By.TagName("td"))[7]
+            //.FindElement(By.TagName("a")).Click();
+
             return this;
         }
 
@@ -132,14 +135,47 @@ namespace WebAddressbookTests
             return new List<DataContact>(contactCache);
         }
 
-        public DataContact GetContactInformationFromTable()
+        public DataContact GetContactInformationFromTable(int index)
         {
-            throw new NotImplementedException();
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
+
+            return new DataContact(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones
+
+            };
         }
 
-        public DataContact GetContactInformationFromEditForm()
+        public DataContact GetContactInformationFromEditForm(int index)
         {
-            throw new NotImplementedException();
+            manager.Navigator.GoToHomePage();
+            InitContactModification();
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value"); 
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new DataContact(firstName, lastName)
+            {
+                Address = address,
+                Homephone = homePhone,
+                Mobilephone = mobilePhone,
+                Workphone = workPhone
+
+            };
+
+
+            
         }
     }
 }

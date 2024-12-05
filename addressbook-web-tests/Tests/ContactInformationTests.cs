@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using NUnit.Framework;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -12,10 +13,15 @@ namespace WebAddressbookTests
     public class ContactInformationTests : AuthTestBase
     {
         [Test]
-        public void TestContactInformation() 
+        public void TestContactInformation()
         {
-            DataContact fromTable = app.Contacts.GetContactInformationFromTable();
-            DataContact fromForm = app.Contacts.GetContactInformationFromEditForm();
+            DataContact fromTable = app.Contacts.GetContactInformationFromTable(0);
+            DataContact fromForm = app.Contacts.GetContactInformationFromEditForm(0);
+
+            Assert.AreEqual(fromTable, fromForm);
+            Assert.AreEqual(fromForm.Address, fromTable.Address);
+            Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
+
         }
     }
 }

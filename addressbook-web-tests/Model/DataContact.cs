@@ -14,10 +14,11 @@ namespace WebAddressbookTests
         private string nickname = "";
         private string title = "";
         private string company = "";
+        private string allphones;
         private string address = "";
-        private string telephonehome = "";
-        private string telephonemobile = "";
-        private string telephonework = "";
+        private string homephone = "";
+        private string mobilephone = "";
+        private string workphone = "";
         private string telephonefax = "";
         private string email = "";
         private string email2 = "";
@@ -49,13 +50,13 @@ namespace WebAddressbookTests
 
         public override int GetHashCode()
         {
-            return 0; 
+            return 0;
         }
 
         public override string ToString()
-       {
-           return "firstname=" + Firstname + " lastname=" + Lastname;
-       }
+        {
+            return "firstname=" + Firstname + " lastname=" + Lastname;
+        }
 
         public int CompareTo(DataContact other)
         {
@@ -74,20 +75,20 @@ namespace WebAddressbookTests
 
         }
 
-        public string IdContact 
+        public string IdContact
         { get; set; }
 
         public string Firstname
-        { 
-                get
+        {
+            get
             {
-                    return firstname;
-                }
-                set
+                return firstname;
+            }
+            set
             {
-                    firstname = value;
-                }
-            
+                firstname = value;
+            }
+
         }
 
         public string Middlename
@@ -115,16 +116,79 @@ namespace WebAddressbookTests
         { get; set; }
 
         public string Address
-        { get; set; }
+        {
+            get
+            {
+                return address;
+            }
+            set
+            {
+                address = value;
+            }
+        }
 
-        public string Telephonehome
-        { get; set; }
 
-        public string Telephonemobile
-        { get; set; }
+        public string Homephone
+        {
+            get
+            {
+                return homephone;
+            }
+            set
+            {
+                homephone = value;
+            }
+        }
 
-        public string Telephonework
-        { get; set; }
+        public string Mobilephone
+        {
+            get
+            {
+                return mobilephone;
+            }
+            set
+            {
+                mobilephone = value;
+            }
+        }
+
+        public string Workphone
+        {
+            get
+            {
+                return workphone;
+            }
+            set
+            {
+                workphone = value;
+            }
+        }
+
+        public string AllPhones
+        {
+            get
+            {
+                if (AllPhones != null)
+                {
+                    return AllPhones;
+                }
+                else
+                {
+                    return (CleanUp(Homephone) + CleanUp(Mobilephone) + CleanUp(Workphone)).Trim();
+                }
+            }
+            set
+            {
+                AllPhones = value;
+            }
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            { return ""; }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
 
         public string Telephonefax
         { get; set; }
@@ -151,5 +215,6 @@ namespace WebAddressbookTests
         public string Group1
         { get; set; }
     }
-
 }
+
+
