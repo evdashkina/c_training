@@ -8,6 +8,9 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Reflection;
 using System.Collections.Generic;
+using OpenQA.Selenium.DevTools.V127.DOMSnapshot;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 
 namespace WebAddressbookTests
 {
@@ -114,6 +117,16 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper InitContactShort()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+            //driver.FindElements(By.Name("entry"))[index]
+            //.FindElements(By.TagName("td"))[7]
+            //.FindElement(By.TagName("a")).Click();
+
+            return this;
+        }
+
         private List<DataContact> contactCache = null;
 
         public List<DataContact> GetContactList()
@@ -140,10 +153,11 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
 
             IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
-            string address = cells[3].Text;
-            string allPhones = cells[5].Text;
+           string address = cells[3].Text;
+           string allPhones = cells[5].Text;
 
             return new DataContact(firstName, lastName)
             {
@@ -172,10 +186,43 @@ namespace WebAddressbookTests
                 Mobilephone = mobilePhone,
                 Workphone = workPhone
 
-            };
+            };  
+        }
+        public int GetNumberOfSearchResult()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
+        }
 
-
+        public DataContact GetContactInformationFromShort(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactShort();
+            string allNames = driver.FindElement(By.CssSelector("div#content b")).Text;
+            string[] N = allNames.Split(' ');
+            string firstName = N[0];
+            string middleName = N[1];
+            string lastName = N[2];
             
+
+             string cells = driver.FindElement(By.CssSelector("div#content")).Text;
+             string[] mems = cells.Split('\n');
+             string address = mems[1];
+             string homePhone = mems[3];
+             string mobilePhone = mems[4];
+             string workPhone = mems[5];
+
+            return new DataContact(firstName, lastName)
+           {
+                Middlename = middleName,
+                Address = address,
+                Homephone = homePhone,
+                Mobilephone = mobilePhone,
+                Workphone = workPhone
+
+           };
         }
     }
 }

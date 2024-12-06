@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WebAddressbookTests
@@ -92,7 +93,16 @@ namespace WebAddressbookTests
         }
 
         public string Middlename
-        { get; set; }
+        {
+            get
+            {
+                return middlename;
+            }
+            set
+            {
+                middlename = value;
+            }
+        }
 
         public string Lastname
         {
@@ -119,7 +129,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return address;
+                return CleanUpA(address);
             }
             set
             {
@@ -132,7 +142,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return homephone;
+                return CleanUpB(homephone);
             }
             set
             {
@@ -144,7 +154,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return mobilephone;
+                return CleanUpB(mobilephone);
             }
             set
             {
@@ -156,7 +166,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return workphone;
+                return CleanUpB(workphone);
             }
             set
             {
@@ -188,6 +198,23 @@ namespace WebAddressbookTests
             if (phone == null || phone == "")
             { return ""; }
             return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
+        }
+
+        private string CleanUpB(string phone)
+        {
+            if (phone == null || phone == "")
+            { return ""; }
+            return phone.Replace(" ", "").Replace("H:", "").Replace("M:", "").Replace("W:", "").Replace("\r", "") + "\r\n";
+            //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
+        }
+
+        private string CleanUpA(string phone)
+        {
+            if (phone == null || phone == "")
+            { return ""; }
+            return phone.Replace("\r", "");
+            //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
         }
 
         public string Telephonefax
