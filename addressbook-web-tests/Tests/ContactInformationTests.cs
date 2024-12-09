@@ -27,13 +27,11 @@ namespace WebAddressbookTests
         [Test]
         public void TestContactInformationShort()
         {
-            DataContact fromForm = app.Contacts.GetContactInformationFromEditForm(0);
-            DataContact fromShort = app.Contacts.GetContactInformationFromShort(0);
-            Assert.AreEqual(fromForm, fromShort);
-           Assert.AreEqual(fromForm.Address, fromShort.Address);
-           Assert.AreEqual(fromShort.Homephone, fromForm.Homephone);
-           Assert.AreEqual(fromShort.Mobilephone, fromForm.Mobilephone);
-           Assert.AreEqual(fromShort.Workphone, fromForm.Workphone);
+            string fromShort = app.Contacts.GetContactInformationFromShort();
+            string fromForm = app.Contacts.GetContactInformationFromForm();
+            Assert.AreEqual(fromShort, fromForm);
+          
         }
+
     }
 }

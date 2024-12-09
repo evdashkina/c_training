@@ -28,6 +28,8 @@ namespace WebAddressbookTests
         private string birthday = "";
         private string anniversary = "";
         private string group1 = "";
+        private string allnames = "";
+        private string cells = "";
 
         public DataContact(string firstname, string lastname)
         {
@@ -116,6 +118,59 @@ namespace WebAddressbookTests
             }
         }
 
+        public string Allnames
+        {
+            get
+            {
+                if (allnames == null)
+                {
+                    return allnames;
+                }
+                else
+                {
+                    return CleanN(allnames);
+                }
+            }
+           set
+             {
+                allnames = value;
+             }
+        }
+
+        private string CleanN(string name)
+        {
+            if (name == null || name == "")
+            { return ""; }
+            return name.Replace(" ", "").Replace("\r", "").Replace("\n", "");
+        }
+
+        public string Cells
+        {
+            get
+            {
+                if (cells == null)
+                {
+                    return cells;
+                }
+                else
+                {
+                    return CleanC(cells);
+                }
+            }
+            set
+            {
+                cells = value;
+            }
+        }
+
+        private string CleanC(string item)
+        {
+            if (item == null || item == "")
+            { return ""; }
+            return item.Replace(" ", "").Replace("\r", "").Replace("\n", "");
+
+        }
+
         public string Nickname
         { get; set; }
 
@@ -129,7 +184,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return CleanUpA(address);
+               return address;
             }
             set
             {
@@ -142,7 +197,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return CleanUpB(homephone);
+                return homephone;
             }
             set
             {
@@ -154,7 +209,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return CleanUpB(mobilephone);
+                return mobilephone;
             }
             set
             {
@@ -166,7 +221,7 @@ namespace WebAddressbookTests
         {
             get
             {
-                return CleanUpB(workphone);
+                return workphone;
             }
             set
             {
@@ -201,21 +256,21 @@ namespace WebAddressbookTests
             //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
         }
 
-        private string CleanUpB(string phone)
-        {
-            if (phone == null || phone == "")
-            { return ""; }
-            return phone.Replace(" ", "").Replace("H:", "").Replace("M:", "").Replace("W:", "").Replace("\r", "") + "\r\n";
-            //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
-        }
+       // private string CleanUpB(string phone)
+       // {
+       //     if (phone == null || phone == "")
+       //     { return ""; }
+       //     return phone.Replace(" ", "").Replace("H:", "").Replace("M:", "").Replace("W:", "").Replace("\r", "") + "\r\n";
+       //     //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
+       // }
 
-        private string CleanUpA(string phone)
-        {
-            if (phone == null || phone == "")
-            { return ""; }
-            return phone.Replace("\r", "");
+       // private string CleanUpA(string phone)
+       // {
+       //     if (phone == null || phone == "")
+       //     { return ""; }
+        //    return phone.Replace("\r", "");
             //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
-        }
+       // }
 
         public string Telephonefax
         { get; set; }

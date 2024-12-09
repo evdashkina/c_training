@@ -196,33 +196,35 @@ namespace WebAddressbookTests
             return Int32.Parse(m.Value);
         }
 
-        public DataContact GetContactInformationFromShort(int index)
+        public string GetContactInformationFromShort()
         {
             manager.Navigator.GoToHomePage();
             InitContactShort();
-            string allNames = driver.FindElement(By.CssSelector("div#content b")).Text;
-            string[] N = allNames.Split(' ');
-            string firstName = N[0];
-            string middleName = N[1];
-            string lastName = N[2];
             
-
-             string cells = driver.FindElement(By.CssSelector("div#content")).Text;
-             string[] mems = cells.Split('\n');
-             string address = mems[1];
-             string homePhone = mems[3];
-             string mobilePhone = mems[4];
-             string workPhone = mems[5];
-
-            return new DataContact(firstName, lastName)
-           {
-                Middlename = middleName,
-                Address = address,
-                Homephone = homePhone,
-                Mobilephone = mobilePhone,
-                Workphone = workPhone
-
-           };
+            string p;
+            string cells = driver.FindElement(By.CssSelector("div#content")).Text;
+            p = cells.Replace(" ", "").Replace("\n", "").Replace("H:", "").Replace("M:", "").Replace("W:", "").Replace("\r", "");
+           
+            return p;
         }
+
+        public string GetContactInformationFromForm()
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification();
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return firstName + middleName + lastName + address + homePhone + mobilePhone + workPhone;
+
+        }
+
+        
     }
 }
