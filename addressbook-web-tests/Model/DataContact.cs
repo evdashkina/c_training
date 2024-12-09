@@ -144,24 +144,24 @@ namespace WebAddressbookTests
             return name.Replace(" ", "").Replace("\r", "").Replace("\n", "");
         }
 
-        public string Cells
-        {
-            get
-            {
-                if (cells == null)
-                {
-                    return cells;
-                }
-                else
-                {
-                    return CleanC(cells);
-                }
-            }
-            set
-            {
-                cells = value;
-            }
-        }
+       // public string Cells
+       // {
+        //    get
+        //    {
+        //        if (cells == null)
+        //        {
+         //           return cells;
+        //        }
+///else
+          //     {
+            //        return cells;
+            //    }
+           // }
+           // set
+           // {
+           //     cells = value;
+           // }
+      //  }
 
         private string CleanC(string item)
         {
