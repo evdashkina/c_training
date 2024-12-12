@@ -214,52 +214,68 @@ namespace WebAddressbookTests
             InitContactModification();
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            if (firstName != "") 
-           {
-                firstName = firstName + " ";
-            } 
-
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-           if (lastName != "")
-            {
-                lastName = lastName + "\r\n";
-            }
-           
-
             string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
-           if (middleName != "")
-           {
-                middleName = middleName + " ";
+            if (firstName != "" && (lastName != "" || middleName != "")) 
+            {
+                firstName = firstName + " ";
             }
+
+            if (middleName != "" && lastName != "")
+              {
+                middleName = middleName + " ";
+              }
 
             string address = driver.FindElement(By.CssSelector("div#content textarea")).Text;
-            if (address == "" && lastName != "")
-            {
-                lastName = lastName + "\r\n";
+            if (address != "") 
+             {
+               address = "\r\n" + address + "\r\n\r\n";
             }
-            else if (address != "") 
-            {
-                address = address + "\r\n\r\n";
-            }
+        
 
             string homePhone =driver.FindElement(By.Name("home")).GetAttribute("value");
-            if (homePhone != "")
+            if (homePhone != "" && address == "")
             {
-                homePhone = "H: " + homePhone + "\r\n";
+                homePhone = "\r\n\r\nH: " + homePhone;
+            }
+            else if (homePhone !="" && address != "") 
+            {
+                homePhone = "H: " + homePhone;
             }
             
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
-            if (mobilePhone != "")
+            if (mobilePhone != "" && address == "" && homePhone == "")
             {
-                mobilePhone = "M: " + mobilePhone + "\r\n";
+                mobilePhone = "\r\n\r\nM: " + mobilePhone;
             }
-            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            if (workPhone != "")
+            
+            else if (mobilePhone != "" && address != ""  &&  homePhone != "")
             {
-                workPhone = "W: " + workPhone;
+                mobilePhone = "M: " + mobilePhone;
             }
 
-            return firstName + middleName + lastName + address + homePhone + mobilePhone + workPhone;
+
+
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            if (workPhone != "" && address == "" && homePhone == "" && mobilePhone == "")
+            {
+                workPhone = "\r\n\r\nW: " + workPhone;
+
+            }
+            else if (workPhone != "" && address != "" && homePhone != "" && mobilePhone != "")
+            {
+                workPhone ="W: " + workPhone;
+            }
+
+
+            string eMail = driver.FindElement(By.Name("email")).GetAttribute("value");
+            if (eMail != "")
+            {
+                eMail = "\r\n\r\n" + eMail;
+
+            }
+
+            return firstName + middleName + lastName + address + homePhone + mobilePhone + workPhone + eMail;
 
         }
 
