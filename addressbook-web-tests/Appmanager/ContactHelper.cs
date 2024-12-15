@@ -261,7 +261,7 @@ namespace WebAddressbookTests
 
 
             string eMail = driver.FindElement(By.Name("email")).GetAttribute("value");
-            if (eMail != "")
+            if (eMail != "" && (nameFull !="" || address != "" || phoneFull !=""))
             {
                 eMail = "\r\n\r\n" + eMail;
 
