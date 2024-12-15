@@ -226,6 +226,8 @@ namespace WebAddressbookTests
                 middleName = middleName + " ";
               }
 
+            string nameFull = firstName + middleName + lastName;
+
             string address = driver.FindElement(By.CssSelector("div#content textarea")).Text;
             if (address != "") 
              {
@@ -234,37 +236,27 @@ namespace WebAddressbookTests
         
 
             string homePhone =driver.FindElement(By.Name("home")).GetAttribute("value");
-            if (homePhone != "" && address == "")
-            {
-                homePhone = "\r\n\r\nH: " + homePhone;
-            }
-            else if (homePhone !="" && address != "") 
+            if (homePhone != "")
             {
                 homePhone = "H: " + homePhone;
             }
-            
+           
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
-            if (mobilePhone != "" && address == "" && homePhone == "")
-            {
-                mobilePhone = "\r\n\r\nM: " + mobilePhone;
-            }
-            
-            else if (mobilePhone != "" && address != ""  &&  homePhone != "")
+            if (mobilePhone != "")
             {
                 mobilePhone = "M: " + mobilePhone;
             }
-
-
-
+            
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            if (workPhone != "" && address == "" && homePhone == "" && mobilePhone == "")
+            if (workPhone != "")
             {
-                workPhone = "\r\n\r\nW: " + workPhone;
-
+                workPhone = "W: " + workPhone;
             }
-            else if (workPhone != "" && address != "" && homePhone != "" && mobilePhone != "")
+
+            string phoneFull = homePhone + mobilePhone + workPhone;
+            if (phoneFull != "" && address == "")
             {
-                workPhone ="W: " + workPhone;
+                phoneFull = "\r\n\r\n" + phoneFull;
             }
 
 
@@ -275,7 +267,7 @@ namespace WebAddressbookTests
 
             }
 
-            return firstName + middleName + lastName + address + homePhone + mobilePhone + workPhone + eMail;
+            return nameFull + address + phoneFull + eMail;
 
         }
 
