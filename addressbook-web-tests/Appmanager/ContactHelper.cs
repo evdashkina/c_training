@@ -229,11 +229,11 @@ namespace WebAddressbookTests
             string nameFull = firstName + middleName + lastName;
 
             string address = driver.FindElement(By.CssSelector("div#content textarea")).Text;
-            if (address != "") 
-             {
-               address = "\r\n" + address + "\r\n\r\n";
+            if (address != "")
+            {
+                address = "\r\n" + address;
             }
-        
+
 
             string homePhone =driver.FindElement(By.Name("home")).GetAttribute("value");
             if (homePhone != "")
@@ -254,7 +254,7 @@ namespace WebAddressbookTests
             }
 
             string phoneFull = homePhone + mobilePhone + workPhone;
-            if (phoneFull != "" && address == "")
+            if (phoneFull != "")
             {
                 phoneFull = "\r\n\r\n" + phoneFull;
             }
