@@ -144,24 +144,6 @@ namespace WebAddressbookTests
             return name.Replace(" ", "").Replace("\r", "").Replace("\n", "");
         }
 
-       // public string Cells
-       // {
-        //    get
-        //    {
-        //        if (cells == null)
-        //        {
-         //           return cells;
-        //        }
-///else
-          //     {
-            //        return cells;
-            //    }
-           // }
-           // set
-           // {
-           //     cells = value;
-           // }
-      //  }
 
         private string CleanC(string item)
         {
@@ -256,21 +238,7 @@ namespace WebAddressbookTests
             //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
         }
 
-       // private string CleanUpB(string phone)
-       // {
-       //     if (phone == null || phone == "")
-       //     { return ""; }
-       //     return phone.Replace(" ", "").Replace("H:", "").Replace("M:", "").Replace("W:", "").Replace("\r", "") + "\r\n";
-       //     //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
-       // }
-
-       // private string CleanUpA(string phone)
-       // {
-       //     if (phone == null || phone == "")
-       //     { return ""; }
-        //    return phone.Replace("\r", "");
-            //return Regex.Replace(phone, "[ -()]", "") +"\r\n";
-       // }
+       
 
         public string Telephonefax
         { get; set; }
