@@ -9,9 +9,9 @@ namespace WebAddressbookTests
 {
     public class DataContact : IEquatable<DataContact>, IComparable<DataContact>
     {
-        private string firstname;
+       // private string firstname;
         private string middlename = "";
-        private string lastname;
+       // private string lastname;
         private string nickname = "";
         private string title = "";
         private string company = "";
@@ -31,10 +31,13 @@ namespace WebAddressbookTests
         private string allnames = "";
         private string cells = "";
 
+        public DataContact()
+        { }
+
         public DataContact(string firstname, string lastname)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
+            Firstname = firstname;
+            Lastname = lastname;
         }
 
         public bool Equals(DataContact other)
@@ -83,14 +86,10 @@ namespace WebAddressbookTests
 
         public string Firstname
         {
-            get
-            {
-                return firstname;
-            }
-            set
-            {
-                firstname = value;
-            }
+            get;
+
+
+            set;   
 
         }
 
@@ -109,13 +108,9 @@ namespace WebAddressbookTests
         public string Lastname
         {
             get
-            {
-                return lastname;
-            }
+            ;
             set
-            {
-                lastname = value;
-            }
+            ;
         }
 
         public string Allnames
@@ -211,24 +206,24 @@ namespace WebAddressbookTests
             }
         }
 
-        public string AllPhones
-        {
-            get
-            {
-                if (allphones != null)
-                {
-                    return allphones;
-                }
-                else
-                {
+       public string AllPhones
+       {
+           get
+          {
+               if (allphones != null)
+               {
+                   return allphones;
+               }
+               else
+               {
                     return (CleanUp(Homephone) + CleanUp(Mobilephone) + CleanUp(Workphone)).Trim();
                 }
             }
-            set
+           set
             {
                 allphones = value;
             }
-        }
+       }
 
         private string CleanUp(string phone)
         {

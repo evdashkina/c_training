@@ -59,7 +59,7 @@ namespace WebAddressbookTests
 
         public ContactHelper Enter()
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
+            driver.FindElement(By.Name("submit")).Click();
             contactCache = null;
             return this;
         }
@@ -68,6 +68,9 @@ namespace WebAddressbookTests
         {
             Type(By.Name("firstname"), groupcontact.Firstname);
             Type(By.Name("lastname"), groupcontact.Lastname);
+            Type(By.Name("middlename"), groupcontact.Middlename);
+            Type(By.Name("address"), groupcontact.Address);
+            Type(By.Name("home"), groupcontact.Homephone);
             return this;
         }
 

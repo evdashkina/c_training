@@ -4,6 +4,10 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 
 namespace WebAddressbookTests
@@ -25,18 +29,28 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        {
+            
+            return (List<GroupData>) 
+                new XmlSerializer(typeof(List<GroupData>))
+                .Deserialize(new StreamReader(@"groups.xml"));
+        }
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+
+           return  JsonConvert.DeserializeObject<List<GroupData>>(
+               File.ReadAllText(@"groups.json"));
+        }
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
 
         public void GroupCreationTest(GroupData group)
         {
             
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
-
-           
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.getGroupCount());
-
-
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
