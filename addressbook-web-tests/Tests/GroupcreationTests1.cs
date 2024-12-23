@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using System.Linq;
 
 
 namespace WebAddressbookTests
@@ -58,5 +59,19 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
         }
 
+        [Test]
+        public void TestDBConnectivity() 
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+            start = DateTime.Now;
+            AddressBookDB db = new AddressBookDB();
+            List<GroupData> fromDb = (from g in db.Groups select g).ToList();
+            db.Close();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
     }
 }

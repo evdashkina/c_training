@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "group_list")]
+
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
 
@@ -18,21 +21,23 @@ namespace WebAddressbookTests
             Name = name;
         }
 
-    
+        [Column(Name = "group_name"), NotNull]
         public string Name 
         {
             get; set;
-        }
+        } 
 
+        [Column(Name = "group_header")]
         public string Header
         {
             get; set;
         }
+        [Column(Name = "group_footer")]
         public string Footer
         {
             get; set;
         }
-
+        [Column(Name = "group_id")]
         public string Id
         {
             get; set;
