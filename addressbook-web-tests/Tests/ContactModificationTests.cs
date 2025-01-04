@@ -16,15 +16,20 @@ namespace WebAddressbookTests
         public void ContactModificationTest()
         {
 
-            if (app.Contacts.ContactAvailab() == false)
-            {
-                DataContact newContact = new DataContact("Lisa", "Mur");
-                app.Contacts.CreateContact(newContact);
-            }
+           // if (app.Contacts.ContactAvailab() == false)
+           // {
+           //     DataContact newContact = new DataContact("Lisa", "Mur");
+           //     app.Contacts.CreateContact(newContact);
+           // }
             DataContact newData = new DataContact("Elena", "Push");
-            List<DataContact> oldGroups1 = app.Contacts.GetContactList();
-            app.Contacts.ContactModify(newData);
-            List<DataContact> newGroups1 = app.Contacts.GetContactList();
+            
+
+            List<DataContact> oldGroups1 = DataContact.GetAll();
+            DataContact oldContact = oldGroups1[0];
+
+            app.Contacts.ContactModify(newData, oldContact);
+
+            List<DataContact> newGroups1 = DataContact.GetAll();
             oldGroups1[0] = newData;
             oldGroups1.Sort();
             newGroups1.Sort();

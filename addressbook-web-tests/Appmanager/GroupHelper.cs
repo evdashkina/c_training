@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -27,10 +28,10 @@ namespace WebAddressbookTests
         }
 
 
-        public GroupHelper Modify(GroupData newData)
+        public GroupHelper Modify(GroupData newData, int i)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup();
+            SelectGroup(i);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
@@ -38,10 +39,19 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove()
+        public GroupHelper Remove(int i)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup();
+            SelectGroup(i);
+            RemoveGroup();
+            ReturnGroupsPage();
+            return this;
+        }
+
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
             RemoveGroup();
             ReturnGroupsPage();
             return this;
@@ -89,15 +99,21 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper SelectGroup()
+        public GroupHelper SelectGroup(int index)
         {
-             driver.FindElement(By.Name("selected[]")).Click();
+             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index +1) +"]")).Click();
              return this;
+        }
+
+        public GroupHelper SelectGroup(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='"+ id +"'])")).Click();
+            return this;
         }
 
         public bool GroupAvailab()
         {
-            return IsElementPresent(By.Name("selected"));
+            return IsElementPresent(By.CssSelector("span.group"));
         }
 
         public GroupHelper SubmitGroupModification()
@@ -142,5 +158,7 @@ namespace WebAddressbookTests
         {
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
+
+        
     }
 }

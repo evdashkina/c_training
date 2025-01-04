@@ -43,6 +43,14 @@ namespace WebAddressbookTests
             get; set;
         }
 
+        public static List<GroupData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+        }
+
         public bool Equals(GroupData other)
         {
             if (Object.ReferenceEquals(other, null)) 
@@ -73,5 +81,17 @@ namespace WebAddressbookTests
             }
             return Name.CompareTo(other.Name);
         }
+
+        public List<DataContact> GetContacts()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacs
+                        from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.IdContact)
+                        select c).Distinct().ToList();
+            }
+        }
+
     }
 }
+//&& c.Deprecated == "0000-00-00 00:00:00"

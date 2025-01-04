@@ -30,7 +30,7 @@ namespace WebAddressbookTests
         public bool IsElementPresent(By by)
         {
             try
-            {
+            {    
                 driver.FindElement(by);
                 return true;
             }
@@ -41,3 +41,5 @@ namespace WebAddressbookTests
         }
     }
 }
+
+
