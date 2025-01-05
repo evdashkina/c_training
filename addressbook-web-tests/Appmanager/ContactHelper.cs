@@ -342,5 +342,27 @@ namespace WebAddressbookTests
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
+
+
+        public void DeleteContactToGroup(DataContact contact, string id) 
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupFilter(id);
+            SelectContact1(contact.IdContact);
+            DeleteContact();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        private void SelectGroupFilter(string id)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByValue(id);
+        }
+
+        private void DeleteContact()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+        }
+
     }
 }

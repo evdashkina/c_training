@@ -164,6 +164,7 @@
     <Compile Include="Tests\ContactModificationTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\ContactTestBase.cs" />
+    <Compile Include="Tests\DeleteContatcfromGroup.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
     <Compile Include="Tests\GroupTestBase.cs" />
     <Compile Include="Tests\LoginTests.cs" />
