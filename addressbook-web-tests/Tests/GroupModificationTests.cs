@@ -27,7 +27,7 @@ namespace WebAddressbookTests
             newData.Footer = null;
             GroupData oldData = oldGroups[0];
 
-            app.Groups.Modify(newData, 0);
+            app.Groups.Modify(newData, oldData);
 
             List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
